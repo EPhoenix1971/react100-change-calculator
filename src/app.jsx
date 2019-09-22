@@ -20,12 +20,13 @@ export default class App extends Component {
   this.handleChange=this.handleChange.bind(this);
   this.calculate=this.calculate.bind(this);
   }
-
   
   calculate() {
     const amountDue =Number(this.state.amountDue);
     const amountReceived =Number(this.state.amountReceived);
     const totalCentsToReturn = (amountReceived - amountDue) * 100;
+    
+
     this.setState({
       changeDue: (amountReceived - amountDue).toFixed(2),
       twenties: Math.floor((totalCentsToReturn) / 2000),
@@ -45,6 +46,7 @@ export default class App extends Component {
 
 
   render() {
+    
     return (
       <div>
       <div className='container'>
@@ -55,12 +57,15 @@ export default class App extends Component {
             <div class="col-sm-4">
              <div class="panel panel-default">
                <div class="panel-heading">Enter Information</div>
+               <br/>
                <div class="panel-body">How much is due?</div>
                  <input name="amountDue" type="number" placeholder= '00.00' className="form-control" value={this.state.amountDue} onChange={this.handleChange}/>
+               <br/>
                <div class="panel-body">How much was received?</div>
                  <input name="amountReceived" type="number" placeholder= '00.00' className="form-control" value={this.state.amountReceived} onChange={this.handleChange}/>
+               <br/>
                <div class="panel-footer">
-                <button name="submit" className="btn btn-primary" onClick={this.calculate}>Calculate</button>
+                <button name="submit" style={{backgroundColor: "black"}} className="btn btn-primary" onClick={this.calculate}>Calculate</button>
                </div>
              </div>
            </div>
@@ -71,23 +76,23 @@ export default class App extends Component {
           <div class="column">
             <div class="col-sm-8">
               <div class="panel panel-success">
-                <div class="panel-heading">Total change due or additional money owed.</div>
+                <div class="panel-heading">The total change due is:</div>
                 <div class="panel-body">
                   <output name="changeDue" id="changeDue" placeholder='0'>${this.state.changeDue}</output>
                 </div>
               </div>
-              
             </div>
           </div>
-      
+  
           <hr/>  
 
           <div class="column">
             <div class="row">
-              <div>
+
+              <div> 
                 <label className="control-label col-sm-3">Twenties</label>
                 <output name="twenties" id="twenties">{this.state.twenties}</output>
-              </div> 
+              </div>
 
               <div>
                 <label className="control-label col-sm-3">Tens</label>
